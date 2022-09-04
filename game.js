@@ -17,40 +17,72 @@ function getComputerChoice(){
 function playAround(computerSelection, playerSelection){
     //Seccion de Rock
     if (computerSelection === "Rock" && playerSelection === "paper"){
-        console.log("You won! Paper beats rock.")
+        return 'win';
     } 
     else if (computerSelection === "Rock" && playerSelection === "scissor"){
-        console.log("You lost! Rock beats scissor.")
+        return 'lose';
     } 
     else if (computerSelection === "Rock" && playerSelection === "rock"){
-        console.log("Tie!")
+        return 'tie';
     }
 
     //Seccion de Paper
     else if (computerSelection === "Paper" && playerSelection === "rock") {
-        console.log("You lost! Paper beats rock.")
+        return 'lose';
     } 
     else if (computerSelection === "Paper" && playerSelection === "scissor") {
-        console.log("You won! Scissors beats paper.")
+        return 'win';
     } 
     else if (computerSelection === "Paper" && playerSelection === "paper") {
-        console.log("Tie!")
+        return 'tie';
     } 
 
     //Seccion de Scissor 
     else if (computerSelection === "Scissor" && playerSelection === "rock") {
-        console.log("You lost! Paper beats rock.")
+        return 'lose';
     } 
     else if (computerSelection === "Scissor" && playerSelection === "paper") {
-        console.log("You won! Scissors beats paper.")
+        return 'win';
     } 
     else if (computerSelection === "Scissor" && playerSelection === "scissor") {
-        console.log("Tie!")
+        return 'tie';
     }
 }
 
 
-const computerSelection = getComputerChoice();
-const playerSelection = prompt("Choose! Rock, Paper, Scissor: ").toLowerCase();
+function game(){
+    for(let i = 0; i < 5; i++){
+        const computerSelection = getComputerChoice();
+        const playerSelection = prompt("Choose! Rock, Paper, Scissor: ").toLowerCase();
+        playAround(computerSelection, playerSelection);
+        var wins = 0;
+        var lose = 0;
+        
+        if (playAround(computerSelection, playerSelection) === 'win'){
+            wins += 1;
+            console.log('You won a round!');
+        } 
+        else if (playAround(computerSelection, playerSelection) === 'lose'){
+            lose += 1;
+            console.log('You lost a round!')
+        } 
+        else if (playAround(computerSelection, playerSelection) === 'tie'){
+            console.log('tie!')
+        }
 
-playAround(computerSelection, playerSelection);
+        if (wins === 5){
+            console.log('You won the game!')
+        } else if (lose === 5){
+            console.log('You lost the game!')
+        }           
+    }
+    if ( wins < lose){
+        console.log("lose")
+    } else if ( wins> lose) {
+        console.log("win")
+    } else if (wins === lose) {
+        console.log("Tie game!")
+    }
+}
+
+game();
